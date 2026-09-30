@@ -10,7 +10,11 @@ export default class CartItem {
 
   // }
 
-  updateQuantity(quantity) {
-    return this.quantity = quantity;
+  increaseQuantity(quantity) {
+    return (this.quantity += quantity);
+  }
+
+  decreaseQuantity(quantity) {
+    return (this.quantity -= quantity);
   }
 }

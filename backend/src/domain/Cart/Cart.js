@@ -14,9 +14,9 @@ export default class Cart {
   //   return this.user_id;
   // }
 
-  getItem(itemId) {
-    return this.items.find((item) => item.id === itemId);
-  }
+  // getItem(itemId) {
+  //   return this.items.find((item) => item.id === itemId);
+  // }
 
   getItems() {
     return this.items;

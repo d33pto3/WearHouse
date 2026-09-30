@@ -1,3 +1,5 @@
+import Product from "./src/domain/Product/Product";
+
 const cgSmallBlackShirt = new ProductVariant(
   "CG-BLK-S",
   "black",
@@ -158,7 +160,7 @@ const teeShirt = new Product(
   teeShirtVariants,
 );
 
-const pant = new Product("P-002", "Pand", "pant", "shaw", pantVariants);
+const pant = new Product("P-002", "Pant", "pant", "shaw", pantVariants);
 
 const jessi = new User("U-001", "Jasmin", "user");
 
@@ -182,9 +184,14 @@ jessiCart.addItem(jessiCartItem2);
 
 const variantsArray = Object.values(variants);
 
-const totalPrice = jessiCart.getItems().reduce(
-  (acc, item) => acc + variantsArray.find((variant) => variant.id === item.variant_id).price * item.quantity,
-  0,
-);
+const totalPrice = jessiCart
+  .getItems()
+  .reduce(
+    (acc, item) =>
+      acc +
+      variantsArray.find((variant) => variant.id === item.variant_id).price *
+        item.quantity,
+    0,
+  );
 
 console.log(`Total price of items in the cart: ${totalPrice}`);
