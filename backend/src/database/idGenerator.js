@@ -2,6 +2,8 @@ let counters = {
   cart: 401,
   cartItem: 501,
   user: 101,
+  product: 201,
+  variant: 301,
 };
 
 export const generateId = (prefix) => {

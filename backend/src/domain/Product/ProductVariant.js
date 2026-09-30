@@ -8,9 +8,16 @@ export default class ProductVariant {
     this.sku = sku;
   }
 
-  findVariantById(id) {
-    if(this.id === id) {
-      return this;
+  increaseStock(quantity) {
+    this.stock += quantity;
+  }
+
+  decreaseStock(quantity) {
+    if (this.stock >= quantity) {
+      this.stock -= quantity;
+    } else {
+      // throw new Error("Insufficient stock");
+      return "Insufficient stock to decrease.";
     }
   }
 
