@@ -33,15 +33,15 @@ export default class Product {
     return this.getTotalStocks() > 0;
   }
 
-  fromPersistence(rawProduct) {
-    const variants = rawProduct.variants.map(rawVariant => {
+  static fromPersistence(rawProduct) {
+    const variants = rawProduct.variants.map((rawVariant) => {
       return new ProductVariant(
         rawVariant.id,
         rawVariant.color,
         rawVariant.size,
         rawVariant.price,
         rawVariant.stock,
-        rawVariant.sku
+        rawVariant.sku,
       );
     });
 
@@ -50,7 +50,7 @@ export default class Product {
       rawProduct.name,
       rawProduct.category,
       rawProduct.brand,
-      variants
+      variants,
     );
   }
 
@@ -60,14 +60,14 @@ export default class Product {
       name: this.name,
       category: this.category,
       brand: this.brand,
-      variants: this.variants.map(variant => ({
+      variants: this.variants.map((variant) => ({
         id: variant.id,
         color: variant.color,
         size: variant.size,
         price: variant.price,
         stock: variant.stock,
-        sku: variant.sku
-      }))
+        sku: variant.sku,
+      })),
     };
   }
 }

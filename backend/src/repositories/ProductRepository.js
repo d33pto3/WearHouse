@@ -1,41 +1,43 @@
 import Product from "../domain/Product/Product.js";
 
 class ProductRepository {
-    constructor(storage) {
-        this.storage = storage;
+  constructor(storage) {
+    this.storage = storage;
+  }
+
+  findById(productId) {
+    const rawProduct = this.storage["products"].find(
+      (product) => product.id === productId,
+    );
+
+    if (!rawProduct) {
+      return null;
     }
 
-    findById(productId) {
-        const rawProduct = this.storage.find(
-            product => product.id === productId
-        );
+    return Product.fromPersistence(rawProduct);
+  }
 
-        if(!rawProduct) {
-            return null;
-        }
+  save(product) {
+    const rawProduct = product.toPersistence();
 
-        return Product.fromPersistence(rawProduct);
+    const index = this.storage.products?.findIndex(
+      (p) => p.id === rawProduct.id,
+    );
+
+    if (index === -1) {
+      this.storage.products.push(rawProduct);
+    } else {
+      this.storage.products[index] = rawProduct;
     }
 
-    save(product) {
-        const rawProduct = product.toPersistence();
-        
-        const index = this.storage.products?.findIndex(p => p.id === rawProduct.id);
+    return rawProduct;
+  }
 
-        if(index === -1) {
-            this.storage.products.push(rawProduct);
-        } else {
-            this.storage.products[index] = rawProduct;
-        }
-
-        return rawProduct;
-    }
-
-    findAll() {
-        return this.storage.products.map(
-            rawProduct => Product.fromPersistence(rawProduct)
-        );
-    }
+  findAll() {
+    return this.storage.products.map((rawProduct) =>
+      Product.fromPersistence(rawProduct),
+    );
+  }
 }
 
 export default ProductRepository;
