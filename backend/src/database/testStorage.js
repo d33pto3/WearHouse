@@ -1,7 +1,7 @@
 const products = [];
 
 const memoryStorage = {
-    products,
-}
+  products,
+};
 
 export default memoryStorage;
