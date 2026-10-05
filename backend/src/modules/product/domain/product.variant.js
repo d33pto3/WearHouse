@@ -22,7 +22,7 @@ export default class ProductVariant {
   }
 
   getVariantPrice(id) {
-    if(this.id === id) {
+    if (this.id === id) {
       return this.price;
     }
   }
